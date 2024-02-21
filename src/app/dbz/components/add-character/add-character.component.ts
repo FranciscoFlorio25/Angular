@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { Character } from '../../interfaces/Personajes/character.interface';
 
@@ -9,14 +9,23 @@ import { Character } from '../../interfaces/Personajes/character.interface';
 })
 export class DbzAddCharacterComponent {
 
+  @Output()
+  OnNewCharacter: EventEmitter<Character> = new EventEmitter();
+
   public character: Character = {
     name: '',
     power: 0
   };
 
-  emitCharacter (name:string,power:number):boolean{
+  emitCharacter ():void{
+    console.log(this.character)
 
+    if(this.character.name.length === 0) return;
 
-    return true;
+    this.OnNewCharacter.emit(this.character);
+
+    this.character.name = '';
+    this.character.power = 0;
+
   }
 }
