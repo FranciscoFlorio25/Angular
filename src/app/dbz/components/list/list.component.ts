@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Character } from '../../interfaces/Personajes/character.interface';
 
 @Component({
@@ -9,6 +9,14 @@ import { Character } from '../../interfaces/Personajes/character.interface';
 
 
 export class DbzListComponent {
+
+  @Output()
+  onCharacterDelete: EventEmitter<string>= new EventEmitter();
+
   @Input()
-  public CharacterList: Character[] = [{name: 'Trunks',power:10}];
+  public CharacterList: Character[] = [];
+
+  onDeleteCharacter(id?:string): void {
+    this.onCharacterDelete.emit(id)
+  }
 }

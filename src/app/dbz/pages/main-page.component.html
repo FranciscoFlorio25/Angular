@@ -2,12 +2,13 @@
 
 <hr>
 
-<div class="row" >
+<div class="row align-items-center d-flex" >
   <div class="col">
-    <app-dbz-list [CharacterList]='Character'></app-dbz-list>
+    <app-dbz-add-character (OnNewCharacter)="OnNewCharacter($event)"></app-dbz-add-character>
+  </div>
+  <div class="col">
+    <app-dbz-list (onCharacterDelete)="OnDeleteCharacter($event)" [CharacterList]='characters'></app-dbz-list>
   </div>
 
-  <div class="col">
-    <app-dbz-add-character (OnNewCharacter)="onNewCharacter($event)"></app-dbz-add-character>
-  </div>
+
 </div>
